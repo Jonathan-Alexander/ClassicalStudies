@@ -33,4 +33,9 @@ oa_retracted_df
 # Write to file
 oa_retracted_df.to_csv('oa-table.csv', sep=',', encoding='utf-8')
 # pd.show_versions()
+antimerge = joined.merge(retracted_df, how='outer', left_on='PMCID', right_on='PMCID', indicator=True)
+antimerge[antimerge['_merge'] == 'both'] # Retracted and in open access subset
+antimerge[antimerge['_merge'] == 'right_only'] # Retracted but not in open access subset
+antimerge[antimerge['_merge'] == 'left_only'] # Not retracted but in open access subset
+antimerge.to_csv('full-table.csv', sep=',', encoding='utf-8')
 
