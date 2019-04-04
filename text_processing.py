@@ -24,7 +24,7 @@ def get_full_text_by_pmcid(pmcid):
                     x.extract()
                 for x in tag.find_all('title'):
                     x.extract()
-                full_text = tag.text.replace(',', '')
+                full_text = tag.text
                 full_text = full_text.replace('\n', ' ')
                 full_text = full_text.replace('(', '')
                 full_text = full_text.replace(')', '')
