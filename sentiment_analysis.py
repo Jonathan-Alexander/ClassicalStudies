@@ -9,7 +9,7 @@ def sentiment_analyzer_scores(sentence):
         score = analyser.polarity_scores(sentence)
         return score['pos'], score['neg'], score['neu']
     else:
-        return 0
+        return 0, 0, 0
     # print("{:-<40} {}".format(sentence, str(score)))
 
 if __name__ == "__main__":
