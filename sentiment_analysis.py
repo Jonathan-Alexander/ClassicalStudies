@@ -3,16 +3,11 @@ from text_processing import get_full_text_by_pmcid
 import pandas as pd
 
 # Gets the positive, negative, or neutral sentiment scores of a given text
-def sentiment_analyzer_scores(sentence, type):
+def sentiment_analyzer_scores(sentence):
     analyser = SentimentIntensityAnalyzer()
-    if sentence is not None:
+    if sentence is not None and type(sentence) == str:
         score = analyser.polarity_scores(sentence)
-        if type == "pos":
-            return score['pos']
-        elif type == 'neg':
-            return score['neg']
-        else:
-            return score['neu']
+        return score['pos'], score['neg'], score['neu']
     else:
         return 0
     # print("{:-<40} {}".format(sentence, str(score)))
