@@ -8,20 +8,21 @@ class LiwcTrieNode(object):
         self.children = []
 
 def add(root, word: str):
-    node = root
-    for char in word:
-        found_in_child = False
-        for child in node.children:
-            if child.char == '*':
-                return
-            if child.char == char:
-                node = child
-                found_in_child = True
-                break
-        if not found_in_child:
-            new_node = LiwcTrieNode(char)
-            node.children.append(new_node)
-            node = new_node
+    if (type(word) == "str"):
+        node = root
+        for char in word:
+            found_in_child = False
+            for child in node.children:
+                if child.char == '*':
+                    return
+                if child.char == char:
+                    node = child
+                    found_in_child = True
+                    break
+            if not found_in_child:
+                new_node = LiwcTrieNode(char)
+                node.children.append(new_node)
+                node = new_node
 
 def find(root, prefix: str):
     node = root
