@@ -12,4 +12,5 @@ def get_jargon():
     print(new_df.head())
     return new_df
 
-get_jargon()
+if __name__ == "__main__":
+    get_jargon()
