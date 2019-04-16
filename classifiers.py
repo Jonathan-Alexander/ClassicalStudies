@@ -1,5 +1,4 @@
 from sklearn.metrics import mean_absolute_error
-from sklearn.model_selection import train_test_split
 class Classifier:
     '''
     Classifier using basic random train/test
