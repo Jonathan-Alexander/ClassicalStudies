@@ -27,9 +27,11 @@ def clean(text):
 
 
 if __name__ == "__main__":
+    nltk.download('all')
     df = pd.read_csv('full-data.csv')
-    df["clean"] = df["Text"].map(lambda r: clean(r))
-    df.to_csv('full-data-clean.csv')
+    new_df = pd.DataFrame()
+    new_df["clean"] = df["Text"].map(lambda r: clean(r))
+    new_df.to_csv('full-data-clean.csv', index=False)
     # print(df["Text"][0])
     # print("\n\n\n\n\n")
     # print(df["clean"][0])
