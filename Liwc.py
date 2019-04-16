@@ -1,17 +1,14 @@
-'''
-@author Phillip Ngo
-
-Edited by: Henry Wang
-'''
 import pandas as pd
 import numpy as np
 import re
 import LiwcTrie as lt
 
 class LiwcAnalyzer():
-    def __init__(self, dictionary_file='LIWC2007dictionary poster.xls'):
+    def __init__(self, dictionary_file='Data/LIWC2007dictionary poster.xls'):
         # Read cleaned dictionary file into DataFrame
         self.liwc_df = pd.read_excel(dictionary_file)
+        categories = ['Insight', 'Cause', 'Discrep', 'Tentat', 'Certain', 'Quant', 'Numbers', ]
+        self.liwc_df = self.liwc_df[categories]
 
         # Create a Trie, liwc_dict, of all terms in the dictionary
         dict_words = [term for term in self.liwc_df.values.flatten() if not pd.isnull(term)]
@@ -27,20 +24,18 @@ class LiwcAnalyzer():
             for word in cat_words:
                 lt.add(cat_dict, word)
             self.liwc_cat_map[category] = cat_dict
-        
 
 
     # Find LIWC values for a pandas Series of text
     # Returns a DataFrame of the values
     def parse(self, data):
-
         # List of Words, no punctuation
         def words(text):
-            return re.sub("[^a-zA-Z\\s]", ' ', re.sub("['.]", '', str(text))).split()
+            return re.sub("[^a-zA-Z\\s]", ' ', re.sub("['.]", '', text)).split()
 
         # List of Sentences, punction included except end marks (!, ?, .)
         def sentences(text):
-            sentences = re.compile("[!?.]+").split(str(text))
+            sentences = re.compile("[!?.]+").split(text)
             return [sentence for sentence in sentences if sentence] # filter empty sentences
 
         w = data.str.lower().apply(words) # Split text into lower case words
