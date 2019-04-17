@@ -3,7 +3,7 @@ class Classifier:
     '''
     Classifier using basic random train/test
     '''
-    def __init__(self, skmodel, X, y, args={}):
+    def __init__(self, skmodel, args={}):
         self.model = skmodel(**args)
     def fit(self, X, y):
         self.model.fit(X, y)
@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     X = df[features]
     y = df[target]
-    model = Classifier(DecisionTreeRegressor, X, y, args={'random_state': 1})
+    model = Classifier(DecisionTreeRegressor, args={'random_state': 1})
     X_train, X_val, Y_train, Y_val = train_test_split(X, y, random_state=0)
     model.fit(X_train, Y_train)
     print(model.mae(X_val, Y_val))
