@@ -5,6 +5,7 @@
 class LiwcTrieNode(object):
     def __init__(self, char: str):
         self.char = char
+        self.word_finished = False
         self.children = []
 
 def add(root, word: str):
@@ -22,6 +23,7 @@ def add(root, word: str):
             new_node = LiwcTrieNode(char)
             node.children.append(new_node)
             node = new_node
+    node.word_finished = True
 
 def find(root, prefix: str):
     node = root
@@ -38,4 +40,6 @@ def find(root, prefix: str):
                 break
         if char_not_found:
             return False
-    return True
+    if node.word_finished:
+        return True
+    return False
