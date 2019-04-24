@@ -6,8 +6,7 @@ if __name__ == '__main__':
 
     df = pd.read_csv('data.csv')
 
-    features = ['gunning_fog', 'pos', 'neg', 'neu', 'Citations', 'Times Cited', 'Number Authors', 'Journal Impact Factor', 'wc', 'sc', 'wps', 'dic', 'sixltr', 'insight', 'cause', 'discrep', 'tentat', 'certain', 'quant', 'numbers', 'jargon']
-    # features = ['article-type']
+    features = ['gunning_fog', 'pos', 'neg', 'neu', 'Citations', 'Times Cited', 'Number Authors', 'Journal Impact Factor', 'wc', 'sc', 'wps', 'dic', 'sixltr', 'insight', 'cause', 'discrep', 'tentat', 'certain', 'quant', 'numbers', 'jargon', 'article-type-id']
     target = ['Retracted']
 
     X = df[features]
